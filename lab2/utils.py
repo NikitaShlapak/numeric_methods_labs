@@ -20,6 +20,7 @@ class System:
         return np.array(sol)
 
     def solve_numerically(self):
+
         p = np.zeros(len(self.x_arr) - 1)
         q = np.ones(len(self.x_arr) - 1)
         p[0] = -1 * self.matrix[0, 1] / self.matrix[0, 0]
@@ -35,10 +36,13 @@ class System:
         self.res_vector[-1] = (self.vector[-1] - self.matrix[-1, -2] * q[-1]) / (
                 self.matrix[-1, -2] * p[-1] + self.matrix[-1, -1])
 
+        for i in range(len(self.vector) - 1):
+            self.res_vector[-i - 2] = self.res_vector[-i - 1] * p[-i - 1] + q[-i - 1]
+
         return np.array(self.res_vector)
 
     def __init__(self, var, y0=0, yn=0):
-        print('Инициализация системы уравнений...')
+        print("Инициализация системы уравнений...")
         self.res_vector = None
         self.var = var
         a = 1 + self.var / 2
@@ -62,7 +66,7 @@ class System:
         print(f"Столбец X: {self.x_arr}",
               f"Матрица системы:\n{self.matrix}",
               f"Столбец ответов: {self.vector}",
-              f"Функция: f(x)={-12*a }x^2 {-4*a}x^3",
+              f"Функция: f(x)={-12 * a}x^2 {-4 * a}x^3",
               f"Точное решение: y(x)={a}(1-x^4)",
               sep='\n\n')
-        print('Инициализация системы уравнений завершена')
+        print("Инициализация системы уравнений окончена")
