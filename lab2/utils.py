@@ -4,7 +4,6 @@ import numpy as np
 class System:
     a = -1
     b = 1
-    h = 0.4
     var = 1
 
     def f(self, x):
@@ -41,9 +40,10 @@ class System:
 
         return np.array(self.res_vector)
 
-    def __init__(self, var, y0=0, yn=0):
+    def __init__(self, var, y0=0, yn=0, step=0.4):
         print("Инициализация системы уравнений...")
         self.res_vector = None
+        self.h = step
         self.var = var
         a = 1 + self.var / 2
         self.x_arr = np.arange(self.a, self.b + self.h, self.h)
