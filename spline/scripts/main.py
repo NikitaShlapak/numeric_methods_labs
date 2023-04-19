@@ -2,7 +2,7 @@ import utils
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = utils.TaskData(m=21)
+data = utils.TaskData(m=3)
 
 print(f'x:{data.x}')
 print(f'y:{data.f}')
